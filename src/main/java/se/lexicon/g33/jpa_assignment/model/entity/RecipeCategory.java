@@ -1,9 +1,6 @@
 package se.lexicon.g33.jpa_assignment.model.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -14,8 +11,16 @@ public class RecipeCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     String category;
-
-    //Collection<Recipe> recipes;
+    @ManyToMany(
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
+            fetch = FetchType.LAZY
+    )
+    @JoinTable(
+            name = "recipe_id_recipe_category_id",
+            joinColumns = @JoinColumn(name = "recipe_category_id"),
+            inverseJoinColumns = @JoinColumn(name = "recipe_id")
+    )
+    Collection<Recipe> recipes;
 
 
     public RecipeCategory() {

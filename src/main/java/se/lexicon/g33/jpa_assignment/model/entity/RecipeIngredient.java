@@ -18,7 +18,9 @@ public class RecipeIngredient {
     Ingredient ingredient;
     private double amount;
     private Measurement measurement;
-    //Recipe recipe;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "recipe_id")
+    Recipe recipe;
 
 
     public RecipeIngredient() {
