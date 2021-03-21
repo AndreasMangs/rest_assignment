@@ -78,13 +78,14 @@ class RecipeRepositoryTest {
 
     @Test
     void findByNameContains() {
-        Collection<Recipe> r1 = testObject.findByNameContains("cake");
-        Collection<Recipe> r2 = testObject.findByNameContains("cheese");
+        Collection<Recipe> r1 = testObject.findByNameContainsIgnoreCase("cAkE");
+        Collection<Recipe> r2 = testObject.findByNameContainsIgnoreCase("cHeEsE");
 
         assertEquals(r1.size(), 1);
         assertEquals(r2.size(), 0);
     }
 
+/*
     @Test
     void findRecipeByRecipeIngredientsContains() {
         Collection<Recipe> r1 = testObject.findRecipeByRecipeIngredientsContains("Egg");
@@ -95,5 +96,14 @@ class RecipeRepositoryTest {
     }
 
 
+    @Test
+    void findByRecipeCategories() {
+        Collection<Recipe> r1 = testObject.findByRecipeCategories("Dessert");
+        Collection<Recipe> r2 = testObject.findByRecipeCategories("Grilling");
 
+        assertEquals(r1.size(), 1);
+        assertEquals(r2.size(), 0);
+    }
+
+*/
 }
