@@ -11,7 +11,6 @@ import se.lexicon.g33.jpa_assignment.model.entity.Ingredient;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -37,9 +36,9 @@ class IngredientRepositoryTest {
     @Test
     @DisplayName("findByIngredient - Should find ingredient")
     void findByIngredient() {
-        Ingredient i = testObject.findByIngredient("Socker");
+        Ingredient i = testObject.findByIngredientName("Socker");
 
-        assertEquals(i.getIngredient(), "Socker");
+        assertEquals(i.getIngredientName(), "Socker");
         assertEquals(i.getId(), 1);
     }
 
@@ -49,7 +48,7 @@ class IngredientRepositoryTest {
 
         Collection<Ingredient> i = new ArrayList<>();
 
-        i = testObject.findByIngredientContains("ock");
+        i = testObject.findByIngredientNameContains("ock");
 
         assertEquals(i.size(), 1);
 

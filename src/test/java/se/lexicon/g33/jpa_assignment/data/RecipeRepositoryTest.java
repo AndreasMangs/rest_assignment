@@ -38,8 +38,8 @@ class RecipeRepositoryTest {
 
         Ingredient ingredient1 = new Ingredient();
         Ingredient ingredient2 = new Ingredient();
-        ingredient1.setIngredient("Sugar");
-        ingredient2.setIngredient("Egg");
+        ingredient1.setIngredientName("Sugar");
+        ingredient2.setIngredientName("Egg");
 
         RecipeIngredient recipeIngredient1 = new RecipeIngredient();
         RecipeIngredient recipeIngredient2 = new RecipeIngredient();
@@ -55,7 +55,7 @@ class RecipeRepositoryTest {
 
 
         Recipe recipe = new Recipe();
-        recipe.setName("Sugar cake");
+        recipe.setRecipeName("Sugar cake");
         recipe.setRecipeInstruction(recipeInstruction);
         recipe.setRecipeCategories(recipeCategorys);
         recipe.setRecipeIngredients(recipeIngredients);
@@ -77,9 +77,9 @@ class RecipeRepositoryTest {
     }
 
     @Test
-    void findByNameContains() {
-        Collection<Recipe> r1 = testObject.findByNameContainsIgnoreCase("cAkE");
-        Collection<Recipe> r2 = testObject.findByNameContainsIgnoreCase("cHeEsE");
+    void findByRecipeNameContains() {
+        Collection<Recipe> r1 = testObject.findByRecipeNameContainsIgnoreCase("cAkE");
+        Collection<Recipe> r2 = testObject.findByRecipeNameContainsIgnoreCase("cHeEsE");
 
         assertEquals(r1.size(), 1);
         assertEquals(r2.size(), 0);

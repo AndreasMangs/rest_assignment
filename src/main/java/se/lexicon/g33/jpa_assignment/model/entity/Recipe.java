@@ -10,7 +10,7 @@ public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    String name;
+    String recipeName;
     @OneToMany(
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
             fetch = FetchType.LAZY,
@@ -35,9 +35,9 @@ public class Recipe {
     )
     Collection<RecipeCategory> recipeCategories;
 
-    public Recipe(int id, String name) {
+    public Recipe(int id, String recipeName) {
         this.id = id;
-        this.name = name;
+        this.recipeName = recipeName;
     }
 
     public Recipe() {
@@ -71,12 +71,12 @@ public class Recipe {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getRecipeName() {
+        return recipeName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRecipeName(String recipeName) {
+        this.recipeName = recipeName;
     }
 
     @Override
@@ -84,19 +84,19 @@ public class Recipe {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Recipe recipe = (Recipe) o;
-        return id == recipe.id && Objects.equals(name, recipe.name);
+        return id == recipe.id && Objects.equals(recipeName, recipe.recipeName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, recipeName);
     }
 
     @Override
     public String toString() {
         return "Recipe{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", recipeName='" + recipeName + '\'' +
                 '}';
     }
 }

@@ -11,7 +11,7 @@
     <groupId>se.lexicon.g33</groupId>
     <artifactId>jpa_assignment</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>jpa_assignment</name>
+    <recipeName>jpa_assignment</recipeName>
     <description>jpa project for Spring Boot</description>
     <properties>
         <java.version>1.8</java.version>

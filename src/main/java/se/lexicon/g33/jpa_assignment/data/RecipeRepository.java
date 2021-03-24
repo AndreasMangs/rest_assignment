@@ -12,7 +12,7 @@ import java.util.Collection;
 
 public interface RecipeRepository extends JpaRepository<Recipe, String> {
 
-    Collection<Recipe> findByNameContainsIgnoreCase(String name);
+    Collection<Recipe> findByRecipeNameContainsIgnoreCase(String name);
 
     /*
     @Query("SELECT i FROM Recipe i WHERE i.recipe.recipeIngredients.ingredient.ingredient IN :ingredient ")
