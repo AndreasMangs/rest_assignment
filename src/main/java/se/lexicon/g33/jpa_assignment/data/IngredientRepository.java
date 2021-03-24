@@ -7,7 +7,7 @@ import java.util.Collection;
 
 public interface IngredientRepository extends CrudRepository<Ingredient, String> {
 
-    Ingredient findByIngredientName(String ingredientName);
+    Ingredient findByIngredientNameIgnoreCase(String ingredientName);
 
     Collection<Ingredient> findByIngredientNameContains(String ingredientName);
 

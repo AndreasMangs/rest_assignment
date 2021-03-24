@@ -7,6 +7,10 @@ import se.lexicon.g33.jpa_assignment.model.entity.Recipe;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import se.lexicon.g33.jpa_assignment.model.entity.RecipeCategory;
+import se.lexicon.g33.jpa_assignment.data.RecipeIngredientRepository;
+import se.lexicon.g33.jpa_assignment.data.IngredientRepository;
+import se.lexicon.g33.jpa_assignment.model.entity.RecipeIngredient;
+
 
 import java.util.Collection;
 
@@ -19,7 +23,11 @@ public interface RecipeRepository extends JpaRepository<Recipe, String> {
     Collection<Recipe> findRecipeByRecipeIngredientsContains(@Param("ingredient") String ingredient);
     */
 
-    /*
+    //Collection<Recipe> findRecipeByRecipeIngredients(Collection<RecipeIngredient> findRecipeIngredientByIngredientContains(Ingredient findByIngredientNameIgnoreCase() ));
+
+    // findByIngredientNameIgnoreCase
+
+    /********* pure SQL
     SELECT name FROM recipe WHERE id IN
             (SELECT ingredient_id FROM recipe_ingredient WHERE ingredient_id IN
                     (SELECT id FROM ingredient WHERE ingredient = ?))
@@ -30,7 +38,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, String> {
     Collection<Recipe> findByRecipeCategories(@Param("category") String category);
     */
 
-    /*
+    /**************** pure sQL
     SELECT name FROM recipe WHERE id IN
             (SELECT recipe_id FROM recipe_id_recipe_category_id where id IN
                     (SELECT id FROM recipe_category WHERE category IN ?))

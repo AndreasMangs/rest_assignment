@@ -36,7 +36,7 @@ class IngredientRepositoryTest {
     @Test
     @DisplayName("findByIngredient - Should find ingredient")
     void findByIngredient() {
-        Ingredient i = testObject.findByIngredientName("Socker");
+        Ingredient i = testObject.findByIngredientNameIgnoreCase("sOcKer");
 
         assertEquals(i.getIngredientName(), "Socker");
         assertEquals(i.getId(), 1);
