@@ -21,7 +21,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 
 
     @Query("SELECT r FROM Recipe r JOIN FETCH r.recipeIngredients AS ri WHERE UPPER(ri.ingredient.ingredientName) = UPPER(:name)")
-    Collection<Recipe> findByIngredientNameIgnoreCase(@Param("name") String ingredientName);
+    Collection<Recipe> findByIngredientNameIgnoreCase(@Param("name") String name);
 
 
 
@@ -30,7 +30,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 
 
     @Query("SELECT r FROM Recipe r JOIN FETCH r.recipeCategories AS rc WHERE rc.category IN (:categories)")
-    Collection<Recipe> findByCategoriesContainsAny(@Param("categories") Collection<String> categories);
+    Collection<Recipe> findByCategories(@Param("categories") Collection<String> categories);
 
 
 }

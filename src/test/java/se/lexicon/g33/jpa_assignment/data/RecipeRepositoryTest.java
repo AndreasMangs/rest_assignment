@@ -11,6 +11,7 @@ import se.lexicon.g33.jpa_assignment.model.misc.Measurement;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,9 +33,9 @@ class RecipeRepositoryTest {
         RecipeCategory recipeCategory2 = new RecipeCategory();
         recipeCategory1.setCategory("Dessert");
         recipeCategory1.setCategory("Baking");
-        Collection<RecipeCategory> recipeCategorys = new ArrayList<>();
-        recipeCategorys.add(recipeCategory1);
-        recipeCategorys.add(recipeCategory2);
+        Collection<RecipeCategory> recipeCategories = new ArrayList<>();
+        recipeCategories.add(recipeCategory1);
+        recipeCategories.add(recipeCategory2);
 
         Ingredient ingredient1 = new Ingredient();
         Ingredient ingredient2 = new Ingredient();
@@ -57,7 +58,7 @@ class RecipeRepositoryTest {
         Recipe recipe = new Recipe();
         recipe.setRecipeName("Sugar cake");
         recipe.setRecipeInstruction(recipeInstruction);
-        recipe.setRecipeCategories(recipeCategorys);
+        recipe.setRecipeCategories(recipeCategories);
         recipe.setRecipeIngredients(recipeIngredients);
 
         em.persist(recipeInstruction);
@@ -87,22 +88,22 @@ class RecipeRepositoryTest {
 
 
     @Test
-    void findByRecipeIngredientIngredientIngredientName() {
+    void findByIngredientNameIgnoreCase() {
 
-        //Collection<Recipe> recipes = testObject.findByRecipeIngredientIngredientIngredientName("Sugar");
+        Collection<Recipe> recipes = testObject.findByIngredientNameIgnoreCase("Sugar");
 
-        //assertEquals(recipes.size(), 1);
+        assertEquals(recipes.size(), 1);
 
     }
 
 
 
 
-/*
+
     @Test
-    void findRecipeByRecipeIngredientsContains() {
-        Collection<Recipe> r1 = testObject.findRecipeByRecipeIngredientsContains("Egg");
-        Collection<Recipe> r2 = testObject.findRecipeByRecipeIngredientsContains("Fudge");
+    void findByCategoryIgnoreCase() {
+        Collection<Recipe> r1 = testObject.findByCategoryIgnoreCase("Egg");
+        Collection<Recipe> r2 = testObject.findByCategoryIgnoreCase("Fudge");
 
         assertEquals(r1.size(), 1);
         assertEquals(r2.size(), 0);
@@ -110,13 +111,19 @@ class RecipeRepositoryTest {
 
 
     @Test
-    void findByRecipeCategories() {
-        Collection<Recipe> r1 = testObject.findByRecipeCategories("Dessert");
-        Collection<Recipe> r2 = testObject.findByRecipeCategories("Grilling");
+    void findByCategories() {
+        Collection<String> recipeCategories1 = new ArrayList<>();
+        Collection<String> recipeCategories2 = new ArrayList<>();
+        recipeCategories1.add("Dessert");
+        recipeCategories2.add("Grilling");
+
+
+        Collection<Recipe> r1 = testObject.findByCategories(recipeCategories1);
+        Collection<Recipe> r2 = testObject.findByCategories(recipeCategories2);
 
         assertEquals(r1.size(), 1);
         assertEquals(r2.size(), 0);
     }
 
-*/
+
 }
