@@ -14,33 +14,23 @@ import se.lexicon.g33.jpa_assignment.model.entity.RecipeIngredient;
 
 import java.util.Collection;
 
-public interface RecipeRepository extends JpaRepository<Recipe, String> {
+public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 
     Collection<Recipe> findByRecipeNameContainsIgnoreCase(String name);
 
-    /*
-    @Query("SELECT i FROM Recipe i WHERE i.recipe.recipeIngredients.ingredient.ingredient IN :ingredient ")
-    Collection<Recipe> findRecipeByRecipeIngredientsContains(@Param("ingredient") String ingredient);
-    */
 
-    //Collection<Recipe> findRecipeByRecipeIngredients(Collection<RecipeIngredient> findRecipeIngredientByIngredientContains(Ingredient findByIngredientNameIgnoreCase() ));
 
-    // findByIngredientNameIgnoreCase
+    @Query("SELECT r FROM Recipe r JOIN FETCH r.recipeIngredients AS ri WHERE UPPER(ri.ingredient.ingredientName) = UPPER(:name)")
+    Collection<Recipe> findByIngredientNameIgnoreCase(@Param("name") String ingredientName);
 
-    /********* pure SQL
-    SELECT name FROM recipe WHERE id IN
-            (SELECT ingredient_id FROM recipe_ingredient WHERE ingredient_id IN
-                    (SELECT id FROM ingredient WHERE ingredient = ?))
-    */
 
-    /*
-    @Query("SELECT c FROM Recipe c WHERE c.recipeCategories. IN :category ")
-    Collection<Recipe> findByRecipeCategories(@Param("category") String category);
-    */
 
-    /**************** pure sQL
-    SELECT name FROM recipe WHERE id IN
-            (SELECT recipe_id FROM recipe_id_recipe_category_id where id IN
-                    (SELECT id FROM recipe_category WHERE category IN ?))
-     */
+    @Query("SELECT r FROM Recipe r JOIN FETCH r.recipeCategories AS rc WHERE UPPER(rc.category) = UPPER(:category)")
+    Collection<Recipe> findByCategoryIgnoreCase(@Param("category") String category);
+
+
+    @Query("SELECT r FROM Recipe r JOIN FETCH r.recipeCategories AS rc WHERE rc.category IN (:categories)")
+    Collection<Recipe> findByCategoriesContainsAny(@Param("categories") Collection<String> categories);
+
+
 }

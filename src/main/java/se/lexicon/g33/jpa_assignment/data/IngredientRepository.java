@@ -5,7 +5,7 @@ import se.lexicon.g33.jpa_assignment.model.entity.Ingredient;
 
 import java.util.Collection;
 
-public interface IngredientRepository extends CrudRepository<Ingredient, String> {
+public interface IngredientRepository extends CrudRepository<Ingredient, Integer> {
 
     Ingredient findByIngredientNameIgnoreCase(String ingredientName);
 

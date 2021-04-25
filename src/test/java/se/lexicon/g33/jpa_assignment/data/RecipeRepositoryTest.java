@@ -85,6 +85,19 @@ class RecipeRepositoryTest {
         assertEquals(r2.size(), 0);
     }
 
+
+    @Test
+    void findByRecipeIngredientIngredientIngredientName() {
+
+        //Collection<Recipe> recipes = testObject.findByRecipeIngredientIngredientIngredientName("Sugar");
+
+        //assertEquals(recipes.size(), 1);
+
+    }
+
+
+
+
 /*
     @Test
     void findRecipeByRecipeIngredientsContains() {

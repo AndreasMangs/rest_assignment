@@ -22,8 +22,11 @@ class RecipeIngredientRepositoryTest {
     @Autowired
     private RecipeIngredientRepository testObject;
     @Autowired
+    private IngredientRepository testObjectIngredient;
+    @Autowired
     private TestEntityManager em;
 
+    Ingredient ingredient;
     Collection<RecipeIngredient> recipeIngredients = new ArrayList<>();
 
     @BeforeEach
@@ -58,8 +61,10 @@ class RecipeIngredientRepositoryTest {
 
     @Test
     void findRecipeIngredientByIngredientContains() {
-        recipeIngredients  = testObject.findRecipeIngredientByIngredientContains("Sugar");
+        ingredient = testObjectIngredient.findByIngredientNameIgnoreCase("sUgaR");
+        recipeIngredients  = testObject.findRecipeIngredientByIngredient(ingredient);
 
+        System.out.println(ingredient);
         System.out.println(recipeIngredients);
 
         assertEquals(recipeIngredients.size(), 1);
