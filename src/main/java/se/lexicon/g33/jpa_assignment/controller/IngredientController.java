@@ -8,6 +8,7 @@ import se.lexicon.g33.jpa_assignment.model.entity.Ingredient;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -32,6 +33,7 @@ public class IngredientController {
         repository.save(ingredient);
         return ResponseEntity.created(URI.create("/api/ingredient/" )).body(ingredient);
     }
+
 
 
 
