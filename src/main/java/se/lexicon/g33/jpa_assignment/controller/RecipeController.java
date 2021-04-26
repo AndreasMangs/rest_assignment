@@ -16,7 +16,7 @@ import java.util.Locale;
 @RestController
 public class RecipeController {
 
-    private RecipeRepository repository;
+    private final RecipeRepository repository;
 
     @Autowired
     public RecipeController(RecipeRepository repository) {

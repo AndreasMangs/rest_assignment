@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 public class IngredientController {
 
-    private IngredientRepository repository;
+    private final IngredientRepository repository;
 
     @Autowired
     public IngredientController(IngredientRepository repository) {
